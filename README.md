@@ -12,12 +12,19 @@ You can check your Azure Firewall rules by this tool on your computer. This tool
 |:---|:---|:---|:---|
 |$Protocol|true|TCP/UDP/ICMP||
 |$SourceIpAddress|true|IPv4 Address||
-|$DestinationIpAddress|false|IPv4 Address||
+|$DestinationIpAddress|false|IPv4 Address|$DestinationIpAddress or $DestinationFQDN is mandatory|
 |$DestinationFQDN|false|FQDN|Not wildcard|
 |$DestinationPort|true|Port Number||
 |$FW_ARMTemplateFilePath|true|File Path|Firewall Policy ARM Template|
 |$IPG_ARMTemplateFilePath|false|File Path|IP Group ARM Template. This is should be one file and the group name should be unique.|
 |$ServiceTagFilePath|false|File Path|If it is no file path, this script gets the tags from the Internet.|
+
+### Each files
+`Firewall Policy ARM Template` You can get it from Azure portal or Export-AzResourceGroup with "-IncludeParameterDefaultValue" option.
+
+`IPGroup ARM Template` You can get it from Azure portal or Export-AzResourceGroup with "-IncludeParameterDefaultValue" option.
+
+`ServiceTag` https://www.microsoft.com/en-in/download/confirmation.aspx?id=56519
 
 ## Enabled feature
 |DNAT|NetworkRule|ApplicationRule|
@@ -38,4 +45,13 @@ You can check your Azure Firewall rules by this tool on your computer. This tool
 ~~~
 
 ![image](https://user-images.githubusercontent.com/37136042/227856870-5ddff044-ba7d-4e5d-b53b-3f11f2b6c537.png)
+
+### About result
+If result is `Traffic : Deny (Return packet [SYN/Ack] is denied.)`, you should check the deny rule. The rule may deny your SYN/ACK packet.
+
+https://learn.microsoft.com/en-us/azure/firewall/rule-processing#three-way-handshake-behavior
+~~~
+As a result, there's no need to create an explicit deny rule from VNet-B to VNet-A. 
+If you create this deny rule, you'll interrupt the three-way handshake from the initial allow rule from VNet-A to VNet-B.
+~~~
 
