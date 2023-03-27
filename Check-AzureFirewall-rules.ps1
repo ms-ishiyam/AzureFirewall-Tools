@@ -228,24 +228,24 @@ for($h=0;$h -le 1;$h++){
     #Main
     #Check Azure Firewall rules with input parameter.
     Get-Content -Path $FW_ARMTemplateFilePath | ConvertFrom-Json | ForEach-Object{
-        for($i=0;$i -lt $_.resources.count;$i++){
+        for($i=0;$i -le $_.resources.count;$i++){
             $_.resources[$i] | ForEach-Object{
                 if($_.type -like "*ruleCollectionGroups"){
                     $FwRuleCollectionGroupName = $_.name.Split("/")[1].Split("'")[0]
                     $FwRCGPriolity = $_.properties.priority
-                    for($j=0;$j -lt $_.properties.ruleCollections.count;$j++){
+                    for($j=0;$j -le $_.properties.ruleCollections.count;$j++){
                         $_.properties.ruleCollections[$j] | ForEach-Object{
                             $FwRuleColName = $_.name
                             $FwRCPriority = $_.priority
                             #NetworkRule
                             if($_.rules.ruleType -eq "NetworkRule"){
                                 $FwActionType = $_.action.type
-                                :ruleslabel for($k=0;$k -lt $_.rules.count;$k++){
+                                :ruleslabel for($k=0;$k -le $_.rules.count;$k++){
                                     $_.rules[$k] | ForEach-Object{
                                         $FwRuleName = $_.name
                                         $FwRuleProtocol = $_.ipProtocols
                                         #Check Protocol.
-                                        if($_.ipProtocols.Contains($Protocol) -or $_.ipProtocols.Contains("ANY")){
+                                        if($_.ipProtocols -like $Protocol -or $_.ipProtocols -like "ANY"){
                                             $Result  = "" | Select-Object FwRuleCollectionGroupName,FwRuleColName,FwRCGPriolity,FwRuleName,FwRCPriority,FwRuleSrcAddr,FwRuleDestAddr,FwRuleDestFQDN,FwRuleDestPort,FwRuleProtocol,FwActionType,SrcIpgName,SrcIpgIPs,DstIpgName,DstIpgIPs,FwRuleType
                                             foreach($FwRuleSrcAddr in $_.sourceAddresses){
                                                 #Check Source IPaddress.
@@ -315,7 +315,7 @@ for($h=0;$h -le 1;$h++){
                                                                     $Result.FwRuleSrcAddr = $FwRuleSrcAddr
                                                                     $Result.FwRuleDestAddr = $FwRuleDestAddr
                                                                     $Result.FwRuleDestPort = $CheckPorts
-                                                                    $Result.DstIpgName = $FwRuleDestIpGrpName
+                                                                    $Result.DstIpgName = $CheckDstIPgroup[0]
                                                                     $Result.DstIpgIPs = $CheckDstIPgroup[1]
                                                                     $OutputObj += $Result
                                                                     Continue ruleslabel
@@ -464,12 +464,12 @@ for($h=0;$h -le 1;$h++){
                                 }
                             }elseif($_.rules.ruleType -eq "ApplicationRule"){  #ApplicationRule
                                 $FwActionType = $_.action.type
-                                :ruleslabel for($k=0;$k -lt $_.rules.count;$k++){
+                                :ruleslabel for($k=0;$k -le $_.rules.count;$k++){
                                     $_.rules[$k] | ForEach-Object{
                                         $FwRuleName = $_.name
                                         $FwRuleProtocol = $_.Protocols.protocolType
                                         #If Portocol is match, go to check Source IP.
-                                        if($Protocol.Contains("TCP")){
+                                        if($Protocol -like "TCP"){
                                             #If Source IPs are match, go to check Destination IP and IP Groups.
                                             $Result  = "" | Select-Object FwRuleCollectionGroupName,FwRuleColName,FwRCGPriolity,FwRuleName,FwRCPriority,FwRuleSrcAddr,FwRuleDestAddr,FwRuleDestFQDN,FwRuleDestPort,FwRuleProtocol,FwActionType,SrcIpgName,SrcIpgIPs,DstIpgName,DstIpgIPs,FwRuleType
                                             $FwRuleDestFQDN = ""
