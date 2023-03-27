@@ -180,16 +180,16 @@ Param(
     [Parameter(Mandatory=$true)]$FwRuleServiceTag
 )
 $AzurePrefixTable = @()
-if($ServiceTagFilePath){
-   $ServiceTagJson = Get-Content -Path $ServiceTagFilePath | ConvertFrom-Json
-}elseif(-! $ServiceTagJson){
-    # Get IP address range and service tags from Download Center
-    $downloadUri = "https://www.microsoft.com/en-in/download/confirmation.aspx?id=56519"
-    $downloadPage = Invoke-WebRequest -Uri $downloadUri -UseBasicParsing 
-    $jsonFileUri = ($downloadPage.RawContent.Split('"') -like "https://*ServiceTags*")[0]
-    $response = Invoke-WebRequest -Uri $jsonFileUri
-    $ServiceTagJson = [System.Text.Encoding]::UTF8.GetString($response.Content) | ConvertFrom-Json
-}
+    if($ServiceTagFilePath){
+    $ServiceTagJson = Get-Content -Path $ServiceTagFilePath | ConvertFrom-Json
+    }elseif(-! $ServiceTagJson){
+        # Get IP address range and service tags from Download Center
+        $downloadUri = "https://www.microsoft.com/en-in/download/confirmation.aspx?id=56519"
+        $downloadPage = Invoke-WebRequest -Uri $downloadUri -UseBasicParsing 
+        $jsonFileUri = ($downloadPage.RawContent.Split('"') -like "https://*ServiceTags*")[0]
+        $response = Invoke-WebRequest -Uri $jsonFileUri
+        $ServiceTagJson = [System.Text.Encoding]::UTF8.GetString($response.Content) | ConvertFrom-Json
+    }
 
     $ServiceTagJson.values | foreach{
         if($_.Name -like "$FwRuleServiceTag"){
