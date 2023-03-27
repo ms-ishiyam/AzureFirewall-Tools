@@ -48,6 +48,7 @@ You can check your Azure Firewall rules by this tool on your computer. This tool
 
 ### About result
 If result is `Traffic : Deny (Return packet [SYN/Ack] is denied.)`, you should check the deny rule. The rule may deny your SYN/ACK packet.
+![image](https://user-images.githubusercontent.com/37136042/227878307-79d471b3-01fe-4243-bec8-42977ef05fa0.png)
 
 https://learn.microsoft.com/en-us/azure/firewall/rule-processing#three-way-handshake-behavior
 ~~~
