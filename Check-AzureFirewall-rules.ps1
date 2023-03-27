@@ -309,7 +309,7 @@ for($h=0;$h -le 1;$h++){
                                                                 }
                                                             }
                                                         }
-                                                    }elseif($FwRuleDestFQDN){
+                                                    }elseif($DestinationFQDN){
                                                         #Check Destination FQDN.
                                                         foreach($FwRuleDestFQDN in $_.destinationFqdns){
                                                             if(($FwRuleDestFQDN -like "$DestinationFQDN")){
@@ -419,7 +419,7 @@ for($h=0;$h -le 1;$h++){
                                                                     }
                                                                 }
                                                             }
-                                                        }elseif($FwRuleDestFQDN){
+                                                        }elseif($DestinationFQDN){
                                                             #Check Destination FQDN.
                                                             foreach($FwRuleDestFQDN in $_.destinationFqdns){
                                                                 if(($FwRuleDestFQDN -like "$DestinationFQDN")){
