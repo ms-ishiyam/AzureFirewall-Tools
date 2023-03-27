@@ -29,7 +29,7 @@ You can check your Azure Firewall rules by this tool on your computer. This tool
 ## Enabled feature
 |DNAT|NetworkRule|ApplicationRule|
 |:---|:---|:---|
-|NotSupported|Supported (IPGroup/ServiceTag/FQDN)|Supported (Only FQDN)|
+|NotSupported|Supported (IP/IPGroup/ServiceTag/FQDN)|Supported (Only FQDN)|
 
 ## Example
 
