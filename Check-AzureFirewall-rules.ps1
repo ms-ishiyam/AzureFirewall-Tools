@@ -550,7 +550,7 @@ for($h=0;$h -le 1;$h++){
             #Show result (Priority 1:FwRuleType [Network], 2:FwRCGPriolity, 3:FwRCPriority)
             $OutputObj | Sort-Object -Property @{Expression = "FwRuleType"; Descending = $true},@{Expression = "FwRCGPriolity"; Descending = $false},@{Expression = "FwRCPriority"; Descending = $false},@{Expression = "FwRuleName"; Descending = $false} |Get-Unique -AsString| Format-Table -Property FwRuleCollectionGroupName,FwRuleType,FwRCGPriolity,FwRuleColName,FwRCPriority,FwRuleName,FwRuleSrcAddr,SrcIpgName,SrcIpgIPs,FwRuleDestAddr,DstIpgName,DstIpgIPs,FwRuleDestFQDN,FwRuleDestPort,FwRuleProtocol,FwActionType -AutoSize -Wrap 
             if($TempSynAckCheck[0] -like "Allow" -and $CheckAllowDeny[0].FwActionType -like "Deny"){
-            Write-Host Traffic : Deny `("Return packet [SYN/Ack] is denied."`)
+            Write-Host Traffic : Deny `("Return packet [SYN/ACK] is denied."`)
                 Break
             }elseif($CheckAllowDeny -eq $null){
                 Write-Host Traffic : Not match
