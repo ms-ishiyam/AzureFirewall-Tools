@@ -44,7 +44,12 @@ You can check your Azure Firewall rules by this tool on your computer. This tool
 -ServiceTagFilePath "C:\xx\ServiceTags_Public_20230320.json"
 ~~~
 
+DestinationIpAddress
 ![image](https://user-images.githubusercontent.com/37136042/227856870-5ddff044-ba7d-4e5d-b53b-3f11f2b6c537.png)
+
+DestinationFQDN
+![image](https://user-images.githubusercontent.com/37136042/227900720-1083a371-3f58-48c4-9e2d-9c907e54a5d7.png)
+
 
 ### About result
 If result is `Traffic : Deny (Return packet [SYN/ACK] is denied.)`, you should check the deny rule. The rule may deny your SYN/ACK packet.
