@@ -1,3 +1,16 @@
+<#
+This is checking tool for your Azure Firewall rules on your local computer.
+.EXAMPLE
+ .\Check-AzureFirewall-rules-ipg.ps1 `
+>> -protocol TCP `
+>> -SourceIpAddress 10.0.0.10 `
+>> -DestinationIpAddress 10.20.0.11 `
+>> -DestinationPort 443 `
+>> -FW_ARMTemplateFilePath "C:\xx\FWPolicy.json" `
+>> -IPG_ARMTemplateFilePath "C:\xx\IPGroup.json" `
+>> -ServiceTagFilePath "C:\xx\ServiceTags_Public_20230320.json"
+#>
+
 Param(
     [ValidateSet("TCP","UDP","ICMP")][Parameter(Mandatory=$true)][String]$Protocol,
     [Parameter(Mandatory=$true)][String]$SourceIpAddress,
