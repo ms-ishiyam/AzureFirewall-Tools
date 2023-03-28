@@ -15,8 +15,8 @@ You can check your Azure Firewall rules by this tool on your computer. This tool
 |$DestinationIpAddress|false|IPv4 Address|$DestinationIpAddress or $DestinationFQDN is mandatory|
 |$DestinationFQDN|false|FQDN|Not wildcard|
 |$DestinationPort|true|Port Number||
-|$FW_ARMTemplateFilePath|true|File Path|Firewall Policy ARM Template|
-|$IPG_ARMTemplateFilePath|false|File Path|IP Group or Firewall ARM Template. This is should be one file and the group name should be unique.|
+|$FW_ARMTemplateFilePath|true|File Path|Firewall Policy or Firewall ARM Template|
+|$IPG_ARMTemplateFilePath|false|File Path|IP Group ARM Template. This is should be one file and the group name should be unique.|
 |$ServiceTagFilePath|false|File Path|If it is no file path, this script gets the tags from the Internet.|
 
 ### Each files
