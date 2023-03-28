@@ -214,7 +214,7 @@ $JPGJson = Get-Content -Path $IPG_ARMTemplateFilePath | ConvertFrom-Json
 }
 
 $OutputObj = @()
-$TempSynAckCheck = @()
+$OutputObjAfterCheck = @()
 
 for($h=0;$h -le 1;$h++){
     if($h -eq 1){
@@ -272,7 +272,9 @@ for($h=0;$h -le 1;$h++){
                                                                             $Result.FwRuleSrcAddr = $FwRuleSrcAddr
                                                                             $Result.FwRuleDestAddr = $FwRuleDestAddr
                                                                             $Result.FwRuleDestPort = $CheckPorts
-                                                                            $OutputObj += $Result
+                                                                            if($SynAckCheck){$OutputObjAfterCheck += $Result}else{
+                                                                                $OutputObj += $Result
+                                                                            }
                                                                             Continue ruleslabel
                                                                         }
                                                                     }
@@ -292,7 +294,9 @@ for($h=0;$h -le 1;$h++){
                                                                     $Result.FwRuleSrcAddr = $FwRuleSrcAddr
                                                                     $Result.FwRuleDestAddr = $FwRuleDestAddr
                                                                     $Result.FwRuleDestPort = $CheckPorts
-                                                                    $OutputObj += $Result
+                                                                    if($SynAckCheck){$OutputObjAfterCheck += $Result}else{
+                                                                        $OutputObj += $Result
+                                                                    }
                                                                     Continue ruleslabel
                                                                 }
                                                             }
@@ -317,7 +321,9 @@ for($h=0;$h -le 1;$h++){
                                                                     $Result.FwRuleDestPort = $CheckPorts
                                                                     $Result.DstIpgName = $CheckDstIPgroup[0]
                                                                     $Result.DstIpgIPs = $CheckDstIPgroup[1]
-                                                                    $OutputObj += $Result
+                                                                    if($SynAckCheck){$OutputObjAfterCheck += $Result}else{
+                                                                        $OutputObj += $Result
+                                                                    }
                                                                     Continue ruleslabel
                                                                 }
                                                             }
@@ -339,7 +345,9 @@ for($h=0;$h -le 1;$h++){
                                                                     $Result.FwRuleSrcAddr = $FwRuleSrcAddr
                                                                     $Result.FwRuleDestFQDN = $DestinationFQDN
                                                                     $Result.FwRuleDestPort = $CheckPorts
-                                                                    $OutputObj += $Result
+                                                                    if($SynAckCheck){$OutputObjAfterCheck += $Result}else{
+                                                                        $OutputObj += $Result
+                                                                    }
                                                                     Continue ruleslabel
                                                                 }
                                                             }
@@ -378,7 +386,9 @@ for($h=0;$h -le 1;$h++){
                                                                                 $Result.FwRuleDestPort = $CheckPorts
                                                                                 $Result.SrcIpgName = $CheckSrcIPgroup[0]
                                                                                 $Result.SrcIpgIPs = $CheckSrcIPgroup[1]
-                                                                                $OutputObj += $Result
+                                                                                if($SynAckCheck){$OutputObjAfterCheck += $Result}else{
+                                                                                    $OutputObj += $Result
+                                                                                }
                                                                                 Continue ruleslabel
                                                                             }
                                                                         }
@@ -400,7 +410,9 @@ for($h=0;$h -le 1;$h++){
                                                                         $Result.FwRuleDestPort = $CheckPorts
                                                                         $Result.SrcIpgName = $CheckSrcIPgroup[0]
                                                                         $Result.SrcIpgIPs = $CheckSrcIPgroup[1]
-                                                                        $OutputObj += $Result
+                                                                        if($SynAckCheck){$OutputObjAfterCheck += $Result}else{
+                                                                            $OutputObj += $Result
+                                                                        }
                                                                         Continue ruleslabel
                                                                     }
                                                                 }
@@ -427,7 +439,9 @@ for($h=0;$h -le 1;$h++){
                                                                         $Result.SrcIpgIPs = $CheckSrcIPgroup[1]
                                                                         $Result.DstIpgName = $CheckDstIPgroup[0]
                                                                         $Result.DstIpgIPs = $CheckDstIPgroup[1]
-                                                                        $OutputObj += $Result
+                                                                        if($SynAckCheck){$OutputObjAfterCheck += $Result}else{
+                                                                            $OutputObj += $Result
+                                                                        }
                                                                         Continue ruleslabel
                                                                     }
                                                                 }
@@ -450,7 +464,9 @@ for($h=0;$h -le 1;$h++){
                                                                         $Result.FwRuleDestPort = $CheckPorts
                                                                         $Result.SrcIpgName = $CheckSrcIPgroup[0]
                                                                         $Result.SrcIpgIPs = $CheckSrcIPgroup[1]
-                                                                        $OutputObj += $Result
+                                                                        if($SynAckCheck){$OutputObjAfterCheck += $Result}else{
+                                                                            $OutputObj += $Result
+                                                                        }
                                                                         Continue ruleslabel
                                                                     }
                                                                 }
@@ -492,7 +508,9 @@ for($h=0;$h -le 1;$h++){
                                                                     $Result.FwRuleSrcAddr = $FwRuleSrcAddr
                                                                     $Result.FwRuleDestFQDN = $FwRuleDestFQDN
                                                                     $Result.FwRuleDestPort = $_.port
-                                                                    $OutputObj += $Result
+                                                                    if($SynAckCheck){$OutputObjAfterCheck += $Result}else{
+                                                                        $OutputObj += $Result
+                                                                    }
                                                                     Continue ruleslabel
                                                                 }
                                                             }
@@ -524,7 +542,9 @@ for($h=0;$h -le 1;$h++){
                                                                         $Result.FwRuleDestPort = $_.port
                                                                         $Result.SrcIpgName = $CheckSrcIPgroup[0]
                                                                         $Result.SrcIpgIPs = $CheckSrcIPgroup[1]
-                                                                        $OutputObj += $Result
+                                                                        if($SynAckCheck){$OutputObjAfterCheck += $Result}else{
+                                                                            $OutputObj += $Result
+                                                                        }
                                                                         Continue ruleslabel
                                                                     }
                                                                 }
@@ -542,14 +562,14 @@ for($h=0;$h -le 1;$h++){
                 }
             }
         }
-        $CheckAllowDeny = $OutputObj |Sort-Object FwRCGPriolity,FwRCPriority
-        if($CheckAllowDeny -ne $null){
-            $TempSynAckCheck += $CheckAllowDeny[0].FwActionType
-        }
+        $CheckAllowDeny = $OutputObj |Sort-Object FwRCGPriolity,FwRCPriority | Select-Object -First 1
+        $CheckAllowDenyAfter = $OutputObjAfterCheck |Sort-Object FwRCGPriolity,FwRCPriority | Select-Object -First 1
         if($SynAckCheck){
             #Show result (Priority 1:FwRuleType [Network], 2:FwRCGPriolity, 3:FwRCPriority)
             $OutputObj | Sort-Object -Property @{Expression = "FwRuleType"; Descending = $true},@{Expression = "FwRCGPriolity"; Descending = $false},@{Expression = "FwRCPriority"; Descending = $false},@{Expression = "FwRuleName"; Descending = $false} |Get-Unique -AsString| Format-Table -Property FwRuleCollectionGroupName,FwRuleType,FwRCGPriolity,FwRuleColName,FwRCPriority,FwRuleName,FwRuleSrcAddr,SrcIpgName,SrcIpgIPs,FwRuleDestAddr,DstIpgName,DstIpgIPs,FwRuleDestFQDN,FwRuleDestPort,FwRuleProtocol,FwActionType -AutoSize -Wrap 
-            if($TempSynAckCheck[0] -like "Allow" -and $CheckAllowDeny[0].FwActionType -like "Deny"){
+            if($CheckAllowDeny.FwActionType -like "Allow" -and $CheckAllowDenyAfter.FwActionType -like "Deny"){
+            Write-Host ----Return Packet Check-----
+            $OutputObjAfterCheck | Sort-Object -Property @{Expression = "FwRuleType"; Descending = $true},@{Expression = "FwRCGPriolity"; Descending = $false},@{Expression = "FwRCPriority"; Descending = $false},@{Expression = "FwRuleName"; Descending = $false} |Get-Unique -AsString| Format-Table -Property FwRuleCollectionGroupName,FwRuleType,FwRCGPriolity,FwRuleColName,FwRCPriority,FwRuleName,FwRuleSrcAddr,SrcIpgName,SrcIpgIPs,FwRuleDestAddr,DstIpgName,DstIpgIPs,FwRuleDestFQDN,FwRuleDestPort,FwRuleProtocol,FwActionType -AutoSize -Wrap 
             Write-Host Traffic : Deny `("Return packet [SYN/ACK] is denied."`)
                 Break
             }elseif($CheckAllowDeny -eq $null){
