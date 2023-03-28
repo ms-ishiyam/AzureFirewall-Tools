@@ -53,7 +53,7 @@ DestinationFQDN
 
 ### About result
 If result is `Traffic : Deny (Return packet [SYN/ACK] is denied.)`, you should check the deny rule. The rule may deny your SYN/ACK packet.
-![image](https://user-images.githubusercontent.com/37136042/228139624-22605657-1032-4814-9ff7-71f0ed9458cf.png)
+![image](https://user-images.githubusercontent.com/37136042/228169759-9d16463a-f299-4794-bcde-399bd2efd7bc.png)
 
 https://learn.microsoft.com/en-us/azure/firewall/rule-processing#three-way-handshake-behavior
 ~~~
