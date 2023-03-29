@@ -573,7 +573,7 @@ for($h=0;$h -le 1;$h++){
             Write-Host Traffic : Deny `("Return packet [SYN/ACK] is denied."`)
                 Break
             }elseif($CheckAllowDeny -eq $null){
-                Write-Host Traffic : Not match
+                Write-Host Traffic : No rule matched
                 Break
             }else{
                 Write-Host Traffic : $CheckAllowDeny[0].FwActionType
