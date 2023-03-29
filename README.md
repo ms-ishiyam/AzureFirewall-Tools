@@ -34,7 +34,7 @@ You can check your Azure Firewall rules by this tool on your computer. This tool
 ## Example
 
  ~~~
- .\Check-AzureFirewall-rules-ipg.ps1 `
+ .\Check-AzureFirewall-Rules-FWPolicy.ps1 `
 -protocol TCP `
 -SourceIpAddress 10.0.0.10 `
 -DestinationIpAddress 10.20.0.11 `
