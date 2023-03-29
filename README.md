@@ -52,8 +52,8 @@ DestinationFQDN
 
 
 ### About result
-If result is `Traffic : Deny (Return packet is denied.)`, you should check the deny rule. The rule may deny your return packet.
-![image](https://user-images.githubusercontent.com/37136042/228408330-26261e9d-f9ad-4a76-9cde-dbf036cae2bc.png)
+If result is `Traffic : Deny (Return packet [SYN/ACK] is denied.)`, you should check the deny rule. The rule may deny your SYN/ACK packet.
+![image](https://user-images.githubusercontent.com/37136042/228170040-b5643cdc-b771-4dbe-85d7-8767543aa818.png)
 
 https://learn.microsoft.com/en-us/azure/firewall/rule-processing#three-way-handshake-behavior
 ~~~
