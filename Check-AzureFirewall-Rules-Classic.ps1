@@ -578,7 +578,7 @@ for($h=0;$h -le 1;$h++){
             if($CheckAllowDeny.FwActionType -like "Allow" -and $CheckAllowDenyAfter.FwActionType -like "Deny"){
             Write-Host ----Return Packet Check-----
             $OutputObjAfterCheck | Sort-Object -Property @{Expression = "FwRuleType"; Descending = $true},@{Expression = "FwRCGPriolity"; Descending = $false},@{Expression = "FwRCPriority"; Descending = $false},@{Expression = "FwRuleName"; Descending = $false} |Get-Unique -AsString| Format-Table -Property FwRuleCollectionGroupName,FwRuleType,FwRCGPriolity,FwRuleColName,FwRCPriority,FwRuleName,FwRuleSrcAddr,SrcIpgName,SrcIpgIPs,FwRuleDestAddr,DstIpgName,DstIpgIPs,FwRuleDestFQDN,FwRuleDestPort,FwRuleProtocol,FwActionType -AutoSize -Wrap 
-            Write-Host Traffic : Deny `("Return packet [SYN/ACK] is denied."`)
+            Write-Host Traffic : Deny `("Return packet is denied."`)
                 Break
             }elseif($CheckAllowDeny -eq $null){
                 Write-Host Traffic : No rule matched
