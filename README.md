@@ -1,7 +1,7 @@
 # Check-AzureFirewall-rules.ps1
 
 ## Descripiton
-You can check your Azure Firewall rules by this tool on your computer. This tool list all of affeted rules in your Azure Firewall policy and sholw the result whether the traffic is allowed or denied.
+You can check your Azure Firewall rules by this tool on your computer. This tool list all of affeted rules in your Azure Firewall policy (or FW Classic) and sholw the result whether the traffic is allowed or denied.
 
 ## Usage senario
 - Check your rules in advance on your computer.
