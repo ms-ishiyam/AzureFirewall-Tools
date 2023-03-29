@@ -20,6 +20,10 @@ You can check your Azure Firewall rules by this tool on your computer. This tool
 |$ServiceTagFilePath|false|File Path|If it is no file path, this script gets the tags from the Internet.|
 
 ### Each files
+`Check-AzureFirewall-Rules-Classic.ps1` is for Azure Firewall Classic.
+
+`Check-AzureFirewall-Rules-FWPolicy.ps1` is for Azure Firewall Policy.
+
 `Firewall Policy / Firewall ARM Template` You can get it from Azure portal or Export-AzResourceGroup with "-IncludeParameterDefaultValue" option.
 
 `IPGroup ARM Template` You can get it from Azure portal or Export-AzResourceGroup with "-IncludeParameterDefaultValue" option.
